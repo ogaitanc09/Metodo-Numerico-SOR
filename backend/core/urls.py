@@ -16,8 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .controlador import SORController
 
 urlpatterns = [
-    path("api/sor/", SORController.as_view(), name="sor"),
+    path('admin/', admin.site.urls),
 ]
