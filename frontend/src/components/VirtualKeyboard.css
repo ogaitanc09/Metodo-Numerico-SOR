@@ -1,0 +1,124 @@
+/* VirtualKeyboard.css */
+.virtual-keyboard-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.keyboard-tabs {
+    display: flex;
+    padding: 8px 10px;
+    background-color: #222831;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    justify-content: flex-start;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #EEEEEE;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background-color: #e0e0e5;
+}
+
+.tab-btn.active {
+    background-color: #00ADB5;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard-content {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.keyboard-grid {
+    display: grid;
+    gap: 6px;
+    padding: 0 5px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Grid Definitions */
+.grid-123 {
+    grid-template-columns: repeat(9, 1fr);
+}
+
+.grid-fx {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-abc {
+    grid-template-columns: repeat(10, 1fr);
+}
+
+/* Key Button Styling */
+.key-btn {
+    height: 45px;
+    background-color: #EEEEEE;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.1s;
+    user-select: none;
+}
+
+.key-btn:active {
+    background-color: #f0f0f0;
+    transform: translateY(1px);
+}
+
+/* Special Keys */
+.key-btn.gray-btn {
+    background-color: #00ADB5;
+    border-color: #c0c3d0;
+}
+
+.key-btn.gray-btn:active {
+    background-color: #00ADB5;
+}
+
+.key-btn.wide-btn {
+    grid-column: span 2;
+}
+
+.space-btn {
+    grid-column: span 5;
+    font-size: 14px;
+    color: #666;
+}
+
+.key-icon {
+    font-size: 20px;
+}

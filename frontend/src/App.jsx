@@ -1,34 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Sidebar from './components/Sidebar'
+import InputView from './components/InputView'
+import ResultView from './components/ResultView'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentView, setCurrentView] = useState('input'); // 'input' | 'result'
+  const [resultData, setResultData] = useState(null);
+
+  const handleContinue = (data) => {
+    setResultData(data);
+    setCurrentView('result');
+  };
+
+  const handleBack = () => {
+    setCurrentView('input');
+  };
+
+  const handleSelectHistory = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/history/${id}/`);
+      if (response.ok) {
+        const data = await response.json();
+        setResultData(data);
+        setCurrentView('result');
+      }
+    } catch (error) {
+      console.error("Failed to fetch attempt details:", error);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app-container">
+      <Sidebar onSelectHistory={handleSelectHistory} />
+      <main className="main-content">
+        {currentView === 'input' ? (
+          <InputView onContinue={handleContinue} />
+        ) : (
+          <ResultView onBack={handleBack} result={resultData} />
+        )}
+      </main>
+    </div>
   )
 }
 
